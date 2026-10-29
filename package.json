@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"check": "svelte-check --tsconfig ./jsconfig.json"
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"demo": "npm run dev --prefix demo"
 	},
 	"files": [
 		"src"
@@ -20,7 +21,7 @@
 			"default": "./src/index.js"
 		},
 		"./urls": {
-			"default": "./src/urls.js"
+			"default": "./src/urls.ts"
 		}
 	},
 	"peerDependencies": {

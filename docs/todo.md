@@ -7,22 +7,22 @@ Track embed providers we support or plan to support. Prefer thin iframe wrappers
 | Generic | `Embed` | done | iframe `src` | Primitive for custom URLs |
 | YouTube | `YouTube` | done | iframe | nocookie by default |
 | Vimeo | `Vimeo` | done | iframe | |
-| Facebook | `Facebook` | todo | iframe / plugin URL | Posts, videos, reels — confirm embed URL shape |
-| Instagram | `Instagram` | todo | iframe / embed URL | Post / reel embeds; watch for script-only APIs |
-| X (Twitter) | `X` | todo | iframe / embed | Prefer iframe; avoid widgets.js if possible |
-| TikTok | `TikTok` | todo | iframe | Popular short-form |
-| LinkedIn | `LinkedIn` | todo | iframe | Posts / embeds |
-| Bluesky | `Bluesky` | todo | iframe / oEmbed-like | Competitor has this; keep zero-dep |
-| Mastodon / Toot | `Toot` | later | iframe | Federated; instance-specific URLs |
-| Threads | `Threads` | later | iframe | Meta; confirm public embed |
-| Pinterest | `Pinterest` | later | iframe | Pins / boards |
-| Reddit | `Reddit` | later | iframe | Post embeds |
-| Tumblr | `Tumblr` | later | iframe | |
-| Spotify | `Spotify` | later | iframe | Audio (not social feed, but popular) |
-| SoundCloud | `SoundCloud` | later | iframe | |
-| Twitch | `Twitch` | later | iframe | Live / clips |
-| CodePen | `CodePen` | later | iframe | Dev embeds |
-| GitHub Gist | `Gist` | later | iframe / script | Script path may be out of scope |
+| Facebook | `Facebook` | done | iframe plugin URL | `href` is the post or video URL |
+| Instagram | `Instagram` | done | iframe `/embed/` | `kind`: `p`, `reel`, `tv` |
+| X (Twitter) | `X` | done | iframe `Tweet.html` | status id; `dnt=true`; no widgets.js |
+| TikTok | `TikTok` | done | iframe player v1 | official player, not embed.js |
+| LinkedIn | `LinkedIn` | blocked | — | no public iframe |
+| Bluesky | `Bluesky` | done | iframe `embed.bsky.app` | `did/app.bsky.feed.post/rkey` |
+| Mastodon / Toot | `Toot` | later | iframe | instance-specific URL |
+| Threads | `Threads` | later | — | confirm a stable iframe |
+| Pinterest | `Pinterest` | later | — | official path is a script widget |
+| Reddit | `Reddit` | done | iframe `embed.reddit.com` | path or permalink |
+| Tumblr | `Tumblr` | later | — | |
+| Spotify | `Spotify` | done | iframe | `type` + id |
+| SoundCloud | `SoundCloud` | done | iframe | track id |
+| Twitch | `Twitch` | later | iframe | requires embedding `parent` hostname |
+| CodePen | `CodePen` | done | iframe | `user/pen` |
+| GitHub Gist | `Gist` | done | iframe `.pibb` | `user/gistId`; no gist.js |
 
 ## Status legend
 
@@ -35,10 +35,10 @@ Track embed providers we support or plan to support. Prefer thin iframe wrappers
 
 ## Priority
 
-1. Facebook, Instagram, X — **only if** a documented public iframe URL exists (no widgets.js / FB SDK); else mark `blocked` and skip  
-2. TikTok, LinkedIn, Bluesky — prefer iframe recipes proven by competitors (e.g. sveltekit-embed)  
-3. Remaining `later` rows when the thin-iframe pattern still holds  
+1. Done: Facebook, Instagram, X, TikTok, Bluesky, plus Spotify, SoundCloud, Reddit, CodePen, Gist  
+2. Later: Mastodon, Threads, Pinterest, Twitch — only with a stable iframe and no widget script  
+3. LinkedIn stays `blocked` until a public iframe exists  
 
-See [IMPROVEMENTS.md](IMPROVEMENTS.md) § social expansion and [reports/](reports/) for evidence.
+See [API.md](API.md) and [IMPROVEMENTS.md](IMPROVEMENTS.md).
 
 Update this table when a component lands or a platform is deferred/`blocked`.

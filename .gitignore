@@ -2,13 +2,15 @@
 node_modules/
 
 # Build / publish artifacts
-/dist
+dist/
 *.tgz
 *.tar.gz
 
 # Tooling caches
 .svelte-kit/
 .vite/
+.wrangler/
+.dev.vars*
 .turbo/
 .parcel-cache/
 *.tsbuildinfo

@@ -1,20 +1,8 @@
-<script>
+<script lang="ts">
 	import Embed from './Embed.svelte';
-	import { iframeDefaults, vimeoEmbedUrl } from './urls.js';
+	import { iframeDefaults, vimeoEmbedUrl, type Frame } from './urls.ts';
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} id
-	 * @property {string} [title]
-	 * @property {string} [aspectRatio]
-	 * @property {'lazy' | 'eager'} [loading]
-	 * @property {string} [allow]
-	 * @property {import('svelte/elements').HTMLIframeAttributes['referrerpolicy']} [referrerpolicy]
-	 * @property {string} [class]
-	 */
-
-	/** @type {Props} */
-	let { id, allow = iframeDefaults.allowVimeo, ...rest } = $props();
+	let { id, allow = iframeDefaults.allowVimeo, ...rest }: Frame & { id: string } = $props();
 
 	let src = $derived(vimeoEmbedUrl(id));
 </script>

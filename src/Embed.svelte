@@ -1,18 +1,6 @@
-<script>
-	import { iframeDefaults } from './urls.js';
+<script lang="ts">
+	import { iframeDefaults, type Frame } from './urls.ts';
 
-	/**
-	 * @typedef {Object} Props
-	 * @property {string} src
-	 * @property {string} [title]
-	 * @property {string} [aspectRatio]
-	 * @property {'lazy' | 'eager'} [loading]
-	 * @property {string} [allow]
-	 * @property {import('svelte/elements').HTMLIframeAttributes['referrerpolicy']} [referrerpolicy]
-	 * @property {string} [class]
-	 */
-
-	/** @type {Props} */
 	let {
 		src,
 		title,
@@ -21,18 +9,11 @@
 		allow = iframeDefaults.allow,
 		referrerpolicy = iframeDefaults.referrerpolicy,
 		class: className
-	} = $props();
+	}: Frame & { src: string } = $props();
 </script>
 
 <div class={className} style:aspect-ratio={aspectRatio}>
-	<iframe
-		{src}
-		{title}
-		{loading}
-		{allow}
-		{referrerpolicy}
-		allowfullscreen
-	></iframe>
+	<iframe {src} {title} {loading} {allow} {referrerpolicy} allowfullscreen></iframe>
 </div>
 
 <style>

@@ -30,12 +30,12 @@ Provider set may grow after competitor research; keep the public surface root-ex
 ## Technical constraints
 
 - **Publish `src/` directly** — no build/dist step; consumers compile `.svelte` themselves.
-- Prefer **Svelte-only** component source (no `lang="ts"`); one `index.js` re-export barrel.
-- **`src/urls.js`** — zero-dep URL helpers for non-Svelte frameworks (React/Vue/etc.); no adapters, no custom-element build.
+- Component markup stays Svelte. Required script is TypeScript (`lang="ts"`, type-only). One `index.js` re-export barrel.
+- **`src/urls.ts`** — zero-dep URL helpers for non-Svelte frameworks (React/Vue/etc.); no adapters, no custom-element build.
 - Framework-agnostic: Svelte components via `svelte` export; any host via `simple-svelte-embeds/urls` + native iframe.
 - Svelte 5 **runes only** — `$props`, `$derived`; avoid `$effect` for iframe URL/attrs.
 - No `$app/*` or Kit-only APIs.
-- `YouTube` / `Vimeo` compose `Embed` and share URL logic with `urls.js`.
+- Providers compose `Embed` and share URL logic with `urls.ts`.
 - Runtime `dependencies` stay empty unless DESIGN.md is updated and reviewed.
 - `svelte` peer is **optional** (needed only when importing components).
 

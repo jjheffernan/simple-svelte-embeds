@@ -30,11 +30,13 @@ No framework adapters are published. Do not import `.svelte` entries from a bund
 
 ```svelte
 <script>
-	import { YouTube, Vimeo, Embed } from 'simple-svelte-embeds';
+	import { Embed, Instagram, Vimeo, X, YouTube } from 'simple-svelte-embeds';
 </script>
 
 <YouTube id="dQw4w9WgXcQ" title="Demo video" />
 <Vimeo id="148751763" title="Demo video" />
+<Instagram id="CgdzCoMoUBJ" title="Instagram post" />
+<X id="20" title="Post on X" />
 <Embed src="https://example.com/embed" title="Custom embed" />
 ```
 
@@ -64,6 +66,16 @@ import { youtubeEmbedUrl, vimeoEmbedUrl, iframeDefaults } from 'simple-svelte-em
 ```
 
 Same helpers work in Vue, Solid, etc. — only the JSX/template syntax changes.
+
+## Demo
+
+A SvelteKit page in `demo/` renders the Svelte components on Cloudflare Workers. It is not part of the published package.
+
+```bash
+npm install --prefix demo
+npm run dev --prefix demo
+npm run deploy --prefix demo
+```
 
 ## Develop
 
