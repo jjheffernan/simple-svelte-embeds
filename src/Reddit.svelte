@@ -1,10 +1,15 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { redditEmbedUrl, type Frame } from './urls.ts';
 
-	let { path, aspectRatio = '4 / 5', ...rest }: Frame & { path: string } = $props();
+	let { path, aspectRatio = '4 / 5', ...rest } = $props();
 
-	let src = $derived(redditEmbedUrl(path));
+	let clean = $derived(
+		path
+			.replace(/^https?:\/\/(www\.|old\.)?reddit\.com\//, '')
+			.replace(/^\//, '')
+			.replace(/\/$/, '')
+	);
+	let src = $derived(`https://embed.reddit.com/${clean}`);
 </script>
 
 <Embed {src} {aspectRatio} {...rest} />

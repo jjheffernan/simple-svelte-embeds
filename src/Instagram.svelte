@@ -1,15 +1,10 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { instagramEmbedUrl, type Frame, type InstagramKind } from './urls.ts';
 
-	let {
-		id,
-		kind = 'p',
-		aspectRatio = '4 / 5',
-		...rest
-	}: Frame & { id: string; kind?: InstagramKind } = $props();
+	let { id, kind = 'p', aspectRatio = '4 / 5', ...rest } = $props();
 
-	let src = $derived(instagramEmbedUrl(id, { kind }));
+	let shape = $derived(kind === 'reel' || kind === 'tv' ? kind : 'p');
+	let src = $derived(`https://www.instagram.com/${shape}/${encodeURIComponent(id)}/embed/`);
 </script>
 
 <Embed {src} {aspectRatio} {...rest} />

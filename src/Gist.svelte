@@ -1,10 +1,11 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { gistEmbedUrl, type Frame } from './urls.ts';
 
-	let { id, ...rest }: Frame & { id: string } = $props();
+	let { id, ...rest } = $props();
 
-	let src = $derived(gistEmbedUrl(id));
+	let src = $derived(
+		`https://gist.github.com/${id.split('/').map(encodeURIComponent).join('/')}.pibb`
+	);
 </script>
 
 <Embed {src} {...rest} />

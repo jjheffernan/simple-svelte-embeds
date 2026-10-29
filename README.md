@@ -1,9 +1,6 @@
 # simple-svelte-embeds
 
-Minimal iframe embeds (YouTube, Vimeo, generic). **Zero runtime dependencies.**
-
-- **Svelte hosts** — components (`YouTube`, `Vimeo`, `Embed`)
-- **Any other framework** — tiny URL helpers + a plain `<iframe>` (no React/Vue wrappers, no web-component build)
+Minimal Svelte iframe embeds. **Zero runtime dependencies.** Each widget is a `.svelte` file.
 
 ## Install
 
@@ -11,61 +8,40 @@ Minimal iframe embeds (YouTube, Vimeo, generic). **Zero runtime dependencies.**
 npm install simple-svelte-embeds
 ```
 
-`svelte` is an **optional** peer: required only if you import the Svelte components.
+`svelte` is an **optional** peer: required only if you import the components.
 
-## Framework support
+## Use
 
-| Host | How to use | Bloat |
-|------|------------|-------|
-| SvelteKit / Vite+Svelte | `import { YouTube } from 'simple-svelte-embeds'` | none |
-| Astro | `@astrojs/svelte` + same import (e.g. `client:visible`) | none |
-| Webpack / Rollup / Parcel + svelte plugin | same as Vite+Svelte | none |
-| React / Next / Remix | `simple-svelte-embeds/urls` + `<iframe>` | none |
-| Vue / Nuxt | `simple-svelte-embeds/urls` + `<iframe>` | none |
-| Solid / Qwik / Angular / vanilla | `simple-svelte-embeds/urls` + `<iframe>` | none |
-
-No framework adapters are published. Do not import `.svelte` entries from a bundler that cannot compile Svelte.
-
-### Svelte / SvelteKit / Astro
+SvelteKit, Vite, Astro (`@astrojs/svelte`), or any bundler that compiles Svelte:
 
 ```svelte
 <script>
-	import { Embed, Instagram, Vimeo, X, YouTube } from 'simple-svelte-embeds';
+	import Embed from 'simple-svelte-embeds/Embed.svelte';
+	import InstagramReel from 'simple-svelte-embeds/InstagramReel.svelte';
+	import SpotifyPlaylist from 'simple-svelte-embeds/SpotifyPlaylist.svelte';
+	import Vimeo from 'simple-svelte-embeds/Vimeo.svelte';
+	import X from 'simple-svelte-embeds/X.svelte';
+	import YouTube from 'simple-svelte-embeds/YouTube.svelte';
+	import YouTubeShorts from 'simple-svelte-embeds/YouTubeShorts.svelte';
 </script>
 
-<YouTube id="dQw4w9WgXcQ" title="Demo video" />
+<YouTube id="dQw4w9WgXcQ" title="Demo video" width="40rem" />
+<YouTubeShorts id="pVRefGmQDJM" title="Short" />
+<InstagramReel id="CgdzCoMoUBJ" title="Reel" />
+<SpotifyPlaylist id="37i9dQZF1DXcBWIGoYBM5M" title="Playlist" />
 <Vimeo id="148751763" title="Demo video" />
-<Instagram id="CgdzCoMoUBJ" title="Instagram post" />
-<X id="20" title="Post on X" />
+<X id="20" title="Post on X" style="width: 24rem; aspect-ratio: 4 / 5" />
 <Embed src="https://example.com/embed" title="Custom embed" />
 ```
 
 ```astro
 ---
-import { YouTube } from 'simple-svelte-embeds';
+import YouTube from 'simple-svelte-embeds/YouTube.svelte';
 ---
 <YouTube client:visible id="dQw4w9WgXcQ" title="Demo" />
 ```
 
-### React / Next (and other non-Svelte)
-
-```js
-import { youtubeEmbedUrl, vimeoEmbedUrl, iframeDefaults } from 'simple-svelte-embeds/urls';
-```
-
-```jsx
-<iframe
-  src={youtubeEmbedUrl('dQw4w9WgXcQ')}
-  title="Demo video"
-  loading={iframeDefaults.loading}
-  allow={iframeDefaults.allow}
-  referrerPolicy={iframeDefaults.referrerpolicy}
-  allowFullScreen
-  style={{ aspectRatio: iframeDefaults.aspectRatio, width: '100%', border: 0 }}
-/>
-```
-
-Same helpers work in Vue, Solid, etc. — only the JSX/template syntax changes.
+Size the frame with props (`width`, `height`, `maxWidth`, `maxHeight`, `aspectRatio`), the same names as CSS variables on a parent (`--embed-width`, `--embed-height`, `--embed-max-width`, `--embed-max-height`, `--embed-aspect`), or a `style` attribute. Details: [docs/API.md](docs/API.md).
 
 ## Demo
 
@@ -82,6 +58,7 @@ npm run deploy --prefix demo
 ```bash
 npm install
 npm run check
+npm test
 ```
 
 Published artifact is `src/` (no build step).

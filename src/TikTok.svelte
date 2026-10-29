@@ -1,10 +1,9 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { tiktokEmbedUrl, type Frame } from './urls.ts';
 
-	let { id, aspectRatio = '9 / 16', ...rest }: Frame & { id: string } = $props();
+	let { id, aspectRatio = '9 / 16', ...rest } = $props();
 
-	let src = $derived(tiktokEmbedUrl(id));
+	let src = $derived(`https://www.tiktok.com/player/v1/${encodeURIComponent(id)}`);
 </script>
 
 <Embed {src} {aspectRatio} {...rest} />

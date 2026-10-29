@@ -15,6 +15,12 @@ dist/
 .parcel-cache/
 *.tsbuildinfo
 
+# Tests
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # Logs & coverage
 logs/
 *.log

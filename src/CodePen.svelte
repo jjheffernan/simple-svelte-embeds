@@ -1,10 +1,13 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { codepenEmbedUrl, type Frame } from './urls.ts';
 
-	let { id, ...rest }: Frame & { id: string } = $props();
+	let { id, preview = false, ...rest } = $props();
 
-	let src = $derived(codepenEmbedUrl(id));
+	let src = $derived.by(() => {
+		const [user = '', pen = ''] = id.split('/');
+		const mode = preview ? 'embed/preview' : 'embed';
+		return `https://codepen.io/${encodeURIComponent(user)}/${mode}/${encodeURIComponent(pen)}`;
+	});
 </script>
 
 <Embed {src} {...rest} />

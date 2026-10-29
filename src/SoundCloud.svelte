@@ -1,10 +1,12 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { soundcloudEmbedUrl, type Frame } from './urls.ts';
 
-	let { id, aspectRatio = '5 / 2', ...rest }: Frame & { id: string } = $props();
+	let { id, kind = 'track', aspectRatio = '5 / 2', ...rest } = $props();
 
-	let src = $derived(soundcloudEmbedUrl(id));
+	let collection = $derived(kind === 'playlist' ? 'playlists' : kind === 'user' ? 'users' : 'tracks');
+	let src = $derived(
+		`https://w.soundcloud.com/player/?url=${encodeURIComponent(`https://api.soundcloud.com/${collection}/${id}`)}`
+	);
 </script>
 
 <Embed {src} {aspectRatio} {...rest} />

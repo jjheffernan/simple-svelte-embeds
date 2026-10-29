@@ -5,23 +5,28 @@ Track embed providers we support or plan to support. Prefer thin iframe wrappers
 | Platform | Component | Status | Pattern | Notes |
 |----------|-----------|--------|---------|-------|
 | Generic | `Embed` | done | iframe `src` | Primitive for custom URLs |
-| YouTube | `YouTube` | done | iframe | nocookie by default |
-| Vimeo | `Vimeo` | done | iframe | |
-| Facebook | `Facebook` | done | iframe plugin URL | `href` is the post or video URL |
-| Instagram | `Instagram` | done | iframe `/embed/` | `kind`: `p`, `reel`, `tv` |
-| X (Twitter) | `X` | done | iframe `Tweet.html` | status id; `dnt=true`; no widgets.js |
-| TikTok | `TikTok` | done | iframe player v1 | official player, not embed.js |
+| YouTube | `YouTube` | done | click-to-play iframe | nocookie by default |
+| YouTube Shorts | `YouTubeShorts` | done | iframe, 9 / 16 | loops; poster until tap |
+| YouTube podcasts | `YouTubePodcast` | done | playlist iframe | playlist id; optional `episode` |
+| YouTube playlists | `YouTubePlaylist` | done | playlist iframe | |
+| YouTube community posts | — | blocked | — | no public iframe |
+| YouTube live chat | — | blocked | iframe | requires the embedding hostname |
+| Vimeo | `Vimeo`, `VimeoShowcase` | done | iframe | video and showcase |
+| Facebook | `Facebook`, `FacebookVideo`, `FacebookPage` | done | iframe plugin URL | post, video, page |
+| Instagram | `Instagram`, `InstagramReel`, `InstagramTV` | done | iframe `/embed/` | post, reel, tv |
+| X (Twitter) | `XPost`, `X` | done | iframe `Tweet.html` | post hides the thread; `dnt=true`; no widgets.js |
+| TikTok | `TikTok`, `TikTokPost` | done | iframe | player v1 and embed card v2 |
 | LinkedIn | `LinkedIn` | blocked | — | no public iframe |
 | Bluesky | `Bluesky` | done | iframe `embed.bsky.app` | `did/app.bsky.feed.post/rkey` |
 | Mastodon / Toot | `Toot` | later | iframe | instance-specific URL |
 | Threads | `Threads` | later | — | confirm a stable iframe |
 | Pinterest | `Pinterest` | later | — | official path is a script widget |
-| Reddit | `Reddit` | done | iframe `embed.reddit.com` | path or permalink |
+| Reddit | `Reddit`, `RedditComment` | done | iframe `embed.reddit.com` | post or comment permalink |
 | Tumblr | `Tumblr` | later | — | |
-| Spotify | `Spotify` | done | iframe | `type` + id |
-| SoundCloud | `SoundCloud` | done | iframe | track id |
+| Spotify | `Spotify`, `SpotifyAlbum`, `SpotifyPlaylist`, `SpotifyEpisode`, `SpotifyShow` | done | iframe | |
+| SoundCloud | `SoundCloud`, `SoundCloudPlaylist`, `SoundCloudProfile` | done | iframe | track, playlist, user |
 | Twitch | `Twitch` | later | iframe | requires embedding `parent` hostname |
-| CodePen | `CodePen` | done | iframe | `user/pen` |
+| CodePen | `CodePen`, `CodePenPreview` | done | iframe | editor embed and result preview |
 | GitHub Gist | `Gist` | done | iframe `.pibb` | `user/gistId`; no gist.js |
 
 ## Status legend

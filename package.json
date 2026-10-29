@@ -1,12 +1,13 @@
 {
 	"name": "simple-svelte-embeds",
 	"version": "0.0.1",
-	"description": "Minimal iframe embeds — Svelte components + zero-dep URL helpers for any framework",
+	"description": "Minimal Svelte iframe embeds",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"demo": "npm run dev --prefix demo"
+		"demo": "npm run dev --prefix demo",
+		"test": "playwright test"
 	},
 	"files": [
 		"src"
@@ -14,15 +15,9 @@
 	"sideEffects": [
 		"**/*.css"
 	],
-	"svelte": "./src/index.js",
+	"svelte": "./src/Embed.svelte",
 	"exports": {
-		".": {
-			"svelte": "./src/index.js",
-			"default": "./src/index.js"
-		},
-		"./urls": {
-			"default": "./src/urls.ts"
-		}
+		"./*": "./src/*"
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0"
@@ -33,18 +28,13 @@
 		}
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.64.1",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.6.0"
 	},
 	"keywords": [
 		"svelte",
 		"sveltekit",
-		"astro",
-		"react",
-		"vue",
-		"solid",
-		"next",
-		"nuxt",
 		"embed",
 		"youtube",
 		"vimeo",

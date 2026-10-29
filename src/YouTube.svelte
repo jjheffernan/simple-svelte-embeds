@@ -1,14 +1,12 @@
-<script lang="ts">
-	import Embed from './Embed.svelte';
-	import { youtubeEmbedUrl, type Frame } from './urls.ts';
+<script>
+	import YouTubePlayer from './YouTubePlayer.svelte';
 
-	let {
-		id,
-		privacyEnhanced = true,
-		...rest
-	}: Frame & { id: string; privacyEnhanced?: boolean } = $props();
+	let { id, privacyEnhanced = true, ...rest } = $props();
 
-	let src = $derived(youtubeEmbedUrl(id, { privacyEnhanced }));
+	let host = $derived(privacyEnhanced ? 'youtube-nocookie' : 'youtube');
+	let src = $derived(`https://www.${host}.com/embed/${encodeURIComponent(id)}`);
+	let poster = $derived(`https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`);
+	let href = $derived(`https://www.youtube.com/watch?v=${encodeURIComponent(id)}`);
 </script>
 
-<Embed {src} {...rest} />
+<YouTubePlayer {src} {poster} {href} {...rest} />

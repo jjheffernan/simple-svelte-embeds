@@ -6,7 +6,7 @@
 - **Zero runtime dependencies** — only `svelte` as a peer. No oEmbed fetchers, no player SDKs, no framework adapters.
 - **SSR-safe** — render a real `<iframe>` (or a deliberate placeholder) without `$app/*` or browser-only imports in `src/lib`.
 - **Accessible** — require or strongly encourage `title`; use native `loading` where appropriate.
-- **Sized predictably** — aspect ratio via CSS (`aspect-ratio` / custom properties), not fixed pixel hacks.
+- **Sized predictably** — one CSS box. Set it with props, parent custom properties, or a `style` attribute.
 - **Privacy-friendly defaults** — prefer YouTube nocookie host when implementing real embeds.
 
 ## Initial scope
@@ -17,7 +17,7 @@
 | `Vimeo` | Build player.vimeo.com embed URL from `id` |
 | `Embed` | Generic iframe wrapper (`src` required) |
 
-Provider set may grow after competitor research; keep the public surface root-exported only.
+Provider set may grow after competitor research. Each widget is its own `.svelte` file.
 
 ## Non-goals
 
@@ -30,12 +30,10 @@ Provider set may grow after competitor research; keep the public surface root-ex
 ## Technical constraints
 
 - **Publish `src/` directly** — no build/dist step; consumers compile `.svelte` themselves.
-- Component markup stays Svelte. Required script is TypeScript (`lang="ts"`, type-only). One `index.js` re-export barrel.
-- **`src/urls.ts`** — zero-dep URL helpers for non-Svelte frameworks (React/Vue/etc.); no adapters, no custom-element build.
-- Framework-agnostic: Svelte components via `svelte` export; any host via `simple-svelte-embeds/urls` + native iframe.
+- `src/` is Svelte components only. No `.js` or `.ts` modules, no `lang="ts"`.
 - Svelte 5 **runes only** — `$props`, `$derived`; avoid `$effect` for iframe URL/attrs.
 - No `$app/*` or Kit-only APIs.
-- Providers compose `Embed` and share URL logic with `urls.ts`.
+- Providers compose `Embed`. The frame size is CSS: props set `--embed-*` variables, a parent can set those same variables, and `style` sets the box directly.
 - Runtime `dependencies` stay empty unless DESIGN.md is updated and reviewed.
 - `svelte` peer is **optional** (needed only when importing components).
 

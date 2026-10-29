@@ -1,26 +1,29 @@
-<script lang="ts">
-	import { iframeDefaults, type Frame } from './urls.ts';
+<script>
+	import Frame from './Frame.svelte';
 
 	let {
 		src,
 		title,
-		aspectRatio = iframeDefaults.aspectRatio,
-		loading = iframeDefaults.loading,
-		allow = iframeDefaults.allow,
-		referrerpolicy = iframeDefaults.referrerpolicy,
-		class: className
-	}: Frame & { src: string } = $props();
+		width,
+		height,
+		maxWidth,
+		maxHeight,
+		aspectRatio,
+		style,
+		loading = 'lazy',
+		allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+		referrerpolicy = 'strict-origin-when-cross-origin',
+		class: className,
+		resizable = true,
+		onresize
+	} = $props();
 </script>
 
-<div class={className} style:aspect-ratio={aspectRatio}>
+<Frame {width} {height} {maxWidth} {maxHeight} {aspectRatio} {style} class={className} {resizable} {onresize}>
 	<iframe {src} {title} {loading} {allow} {referrerpolicy} allowfullscreen></iframe>
-</div>
+</Frame>
 
 <style>
-	div {
-		width: 100%;
-	}
-
 	iframe {
 		width: 100%;
 		height: 100%;

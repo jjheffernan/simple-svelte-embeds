@@ -1,15 +1,11 @@
-<script lang="ts">
+<script>
 	import Embed from './Embed.svelte';
-	import { spotifyEmbedUrl, type Frame, type SpotifyType } from './urls.ts';
 
-	let {
-		id,
-		type = 'track',
-		aspectRatio = '5 / 2',
-		...rest
-	}: Frame & { id: string; type?: SpotifyType } = $props();
+	let { id, type = 'track', aspectRatio = '5 / 2', ...rest } = $props();
 
-	let src = $derived(spotifyEmbedUrl(id, { type }));
+	let src = $derived(
+		`https://open.spotify.com/embed/${encodeURIComponent(type)}/${encodeURIComponent(id)}`
+	);
 </script>
 
 <Embed {src} {aspectRatio} {...rest} />
