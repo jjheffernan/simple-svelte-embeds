@@ -1,6 +1,26 @@
 # simple-svelte-embeds
 
-Minimal Svelte iframe embeds. **Zero runtime dependencies.** Each widget is a `.svelte` file.
+Drop-in iframe embeds for **Svelte 5**. One import, one component, real iframe — no SDKs, no adapters, no runtime deps.
+
+```svelte
+<script>
+	import YouTube from 'simple-svelte-embeds/YouTube.svelte';
+</script>
+
+<YouTube id="dQw4w9WgXcQ" title="Never Gonna Give You Up" />
+```
+
+Poster first. Tap to play. Drag the corner to resize. Ship it.
+
+## Why Svelte people like it
+
+- **Svelte 5 only** — `$props`, `$derived`, published `.svelte` source. You compile it; nothing else does.
+- **Zero runtime deps** — no player SDKs, no oEmbed fetchers, no “framework adapters.”
+- **Import what you use** — tree-shake by path. `YouTube.svelte` does not pull in TikTok.
+- **Privacy-first YouTube** — `youtube-nocookie.com` by default, click-to-load facade, “Watch on YouTube” link.
+- **Sized like CSS** — props, parent custom properties, `style`, or a corner drag handle. Same box everywhere.
+
+Works anywhere a Svelte compiler does: SvelteKit, Vite + Svelte, Astro (`@astrojs/svelte`).
 
 ## Install
 
@@ -8,11 +28,9 @@ Minimal Svelte iframe embeds. **Zero runtime dependencies.** Each widget is a `.
 npm install simple-svelte-embeds
 ```
 
-`svelte` is an **optional** peer: required only if you import the components.
+`svelte` `^5` is an optional peer — required only when you import the components.
 
-## Use
-
-SvelteKit, Vite, Astro (`@astrojs/svelte`), or any bundler that compiles Svelte:
+## Quick start
 
 ```svelte
 <script>
@@ -34,6 +52,8 @@ SvelteKit, Vite, Astro (`@astrojs/svelte`), or any bundler that compiles Svelte:
 <Embed src="https://example.com/embed" title="Custom embed" />
 ```
 
+Astro:
+
 ```astro
 ---
 import YouTube from 'simple-svelte-embeds/YouTube.svelte';
@@ -41,16 +61,51 @@ import YouTube from 'simple-svelte-embeds/YouTube.svelte';
 <YouTube client:visible id="dQw4w9WgXcQ" title="Demo" />
 ```
 
-Size the frame with props (`width`, `height`, `maxWidth`, `maxHeight`, `aspectRatio`), the same names as CSS variables on a parent (`--embed-width`, `--embed-height`, `--embed-max-width`, `--embed-max-height`, `--embed-aspect`), or a `style` attribute. Details: [docs/API.md](docs/API.md).
+## Size it your way
+
+One frame. Pick a method:
+
+| Method | Example |
+|--------|---------|
+| Props | `<YouTube width="40rem" aspectRatio="16 / 9" />` |
+| Parent CSS | `--embed-width`, `--embed-height`, `--embed-aspect`, … |
+| `style` | `style="width: 640px; height: 360px"` |
+| Drag | corner handle · arrow keys · `onresize` · `resizable={false}` |
+
+```css
+.player {
+	--embed-width: min(100%, 40rem);
+	--embed-aspect: 16 / 9;
+}
+```
+
+Full sizing notes: [docs/API.md](docs/API.md).
+
+## Widgets
+
+| Platform | Components |
+|----------|------------|
+| YouTube | `YouTube`, `YouTubeShorts`, `YouTubePodcast`, `YouTubePlaylist` |
+| Vimeo | `Vimeo`, `VimeoShowcase` |
+| Instagram | `Instagram`, `InstagramReel`, `InstagramTV` |
+| X | `X`, `XPost` |
+| Facebook | `Facebook`, `FacebookVideo`, `FacebookPage` |
+| TikTok | `TikTok`, `TikTokPost` |
+| Spotify | `Spotify`, `SpotifyAlbum`, `SpotifyPlaylist`, `SpotifyEpisode`, `SpotifyShow` |
+| SoundCloud | `SoundCloud`, `SoundCloudPlaylist`, `SoundCloudProfile` |
+| Reddit | `Reddit`, `RedditComment` |
+| CodePen | `CodePen`, `CodePenPreview` |
+| Bluesky · Gist · anything | `Bluesky`, `Gist`, `Embed` |
+
+Import the file: `simple-svelte-embeds/YouTubeShorts.svelte`.
 
 ## Demo
 
-A SvelteKit page in `demo/` renders the Svelte components on Cloudflare Workers. It is not part of the published package.
+Try every widget in the SvelteKit demo (Cloudflare Workers ready):
 
 ```bash
 npm install --prefix demo
-npm run dev --prefix demo
-npm run deploy --prefix demo
+npm run demo
 ```
 
 ## Develop
@@ -61,9 +116,11 @@ npm run check
 npm test
 ```
 
-Published artifact is `src/` (no build step).
+Published artifact is `src/` — no build step, no `dist/`.
 
-API: [docs/API.md](docs/API.md) · Design: [docs/DESIGN.md](docs/DESIGN.md)
+CI runs `svelte-check` and Playwright against `svelte@latest` on every PR, and Dependabot opens weekly Svelte bumps.
+
+API · [docs/API.md](docs/API.md) · Design · [docs/DESIGN.md](docs/DESIGN.md)
 
 ## License
 

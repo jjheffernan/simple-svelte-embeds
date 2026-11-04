@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Catch Svelte releases between Dependabot PRs.
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: svelte@${{ matrix.svelte }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        svelte: [latest]
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            demo/package-lock.json
+
+      - name: Install
+        run: |
+          npm ci
+          npm ci --prefix demo
+
+      - name: Use Svelte ${{ matrix.svelte }}
+        run: |
+          npm install --save-dev --save-exact "svelte@${{ matrix.svelte }}"
+          npm install --prefix demo --save-dev --save-exact "svelte@${{ matrix.svelte }}"
+          node -p "'root ' + require('./package.json').devDependencies.svelte"
+          node -p "'demo ' + require('./demo/package.json').devDependencies.svelte"
+
+      - run: npm run check
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - run: npm test
+        env:
+          CI: true

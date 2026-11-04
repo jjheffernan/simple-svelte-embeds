@@ -1,4 +1,5 @@
 <script>
+	import { afterNavigate } from '$app/navigation';
 	import { page } from '$app/state';
 	import Bluesky from '../../../src/Bluesky.svelte';
 	import CodePen from '../../../src/CodePen.svelte';
@@ -162,7 +163,7 @@
 	let height = $state('');
 	let aspect = $state('');
 
-	$effect(() => {
+	afterNavigate(() => {
 		document.getElementById(`tab-${platform.id}`)?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
 		document.getElementById(`widget-${platform.id}-${widget.id}`)?.scrollIntoView({ inline: 'nearest', block: 'nearest' });
 	});

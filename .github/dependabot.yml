@@ -1,0 +1,39 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      svelte:
+        patterns:
+          - 'svelte'
+          - 'svelte-check'
+          - '@sveltejs/*'
+      playwright:
+        patterns:
+          - '@playwright/*'
+          - 'playwright'
+
+  - package-ecosystem: npm
+    directory: /demo
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      svelte:
+        patterns:
+          - 'svelte'
+          - '@sveltejs/*'
+      cloudflare:
+        patterns:
+          - 'wrangler'
+          - '@cloudflare/*'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

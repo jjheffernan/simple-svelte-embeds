@@ -22,6 +22,14 @@
 	let active = $state(false);
 	let failedPoster = $state('');
 
+	// Reset facade when the video changes — $effect.pre is the prop-reset escape hatch.
+	$effect.pre(() => {
+		src;
+		poster;
+		active = false;
+		failedPoster = '';
+	});
+
 	let playSrc = $derived.by(() => {
 		const url = new URL(src);
 		url.searchParams.set('autoplay', '1');

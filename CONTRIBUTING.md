@@ -8,4 +8,7 @@
 ```bash
 npm install
 npm run check
+npm test
 ```
+
+CI installs `svelte@latest` on every push, PR, and Monday cron. Dependabot groups weekly Svelte bumps for `/` and `/demo`.
