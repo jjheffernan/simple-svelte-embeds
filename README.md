@@ -2,7 +2,10 @@
 
 Drop-in iframe embeds for Svelte 5. One import, one component, a real iframe — no SDKs, no adapters, no runtime dependencies.
 
-![Widget overview: YouTube, Shorts, X, and Spotify](docs/assets/widgets-overview.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/widgets-overview-dark.png" />
+  <img alt="Widget overview: YouTube, Shorts, X, and Spotify — framed shell with YouTube footer" src="docs/assets/widgets-overview.png" />
+</picture>
 
 ```bash
 npm install simple-svelte-embeds
@@ -16,7 +19,7 @@ npm install simple-svelte-embeds
 <YouTube id="dQw4w9WgXcQ" title="Never Gonna Give You Up" />
 ```
 
-Poster first. Tap to play. Drag the corner to resize. Live gallery: `npm run demo` then open `/gallery`.
+Poster first. Tap to play. Framed shell with a YouTube footer — not a floating link. Live gallery: `npm run demo` then open `/gallery`.
 
 ## Why this exists
 
@@ -32,7 +35,7 @@ Works in SvelteKit, Vite + Svelte, and Astro (`@astrojs/svelte`).
 
 ![Click to play: poster becomes iframe](docs/assets/click-to-play.svg)
 
-YouTube widgets show a poster until someone clicks. Then the real player loads with `autoplay=1`. A “Watch on YouTube” link stays available for click-through.
+YouTube widgets show a poster until someone clicks. Then the real player loads with `autoplay=1`. “Watch on YouTube” sits in the frame footer for click-through.
 
 ![Three ways to size a frame](docs/assets/resize.svg)
 

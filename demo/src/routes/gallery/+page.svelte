@@ -13,7 +13,8 @@
 	<header>
 		<p class="brand">simple-svelte-embeds</p>
 		<h1>What you get</h1>
-		<p>Real Svelte 5 widgets. Import one file per embed.</p>
+		<p>Framed Svelte 5 widgets — rounded shell, clipped media, YouTube footer link.</p>
+		<p class="nav"><a href="/">Open the interactive demo</a></p>
 	</header>
 
 	<div class="grid">
@@ -69,9 +70,19 @@
 		letter-spacing: -0.03em;
 	}
 
-	header p:last-child {
+	header > p:nth-of-type(2) {
 		margin: 0.5rem 0 0;
 		color: light-dark(#5e5c57, #a8a69f);
+	}
+
+	.nav {
+		margin: 0.75rem 0 0;
+	}
+
+	.nav a {
+		color: inherit;
+		font-size: 0.9rem;
+		font-weight: 500;
 	}
 
 	.grid {

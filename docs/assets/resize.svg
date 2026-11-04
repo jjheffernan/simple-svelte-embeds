@@ -6,7 +6,7 @@
 		.ink { fill: #1c1b19; }
 		.mute { fill: #5e5c57; }
 		.card { fill: #fff; stroke: #e3e1da; stroke-width: 1; }
-		.frame { fill: #eceae4; stroke: #d4d1c8; stroke-width: 1; }
+		.frame { fill: #111; stroke: #d4d1c8; stroke-width: 1; }
 		.grip { fill: rgba(0,0,0,0.4); }
 		.h { font: 600 18px ui-sans-serif, system-ui, sans-serif; }
 		.s { font: 400 13px ui-sans-serif, system-ui, sans-serif; }
@@ -16,7 +16,7 @@
 			.ink { fill: #f4f3ef; }
 			.mute { fill: #a8a69f; }
 			.card { fill: #1a1917; stroke: #2c2b28; }
-			.frame { fill: #242320; stroke: #3a3935; }
+			.frame { fill: #0c0c0b; stroke: #3a3935; }
 			.grip { fill: rgba(255,255,255,0.35); }
 		}
 	</style>

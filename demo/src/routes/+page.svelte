@@ -176,7 +176,10 @@
 <main>
 	<header>
 		<h1>simple-svelte-embeds</h1>
-		<p>Pick a platform, then a widget. Nothing loads until that tab is open.</p>
+		<p>
+			Pick a platform, then a widget. Nothing loads until that tab is open.
+			<a href="/gallery">Gallery overview</a>
+		</p>
 	</header>
 
 	<nav aria-label="Platforms" data-sveltekit-reset="false">
@@ -266,6 +269,11 @@
 	header p {
 		margin: 0.35rem 0 0;
 		color: light-dark(#5e5c57, #a8a69f);
+	}
+
+	header a {
+		color: inherit;
+		font-weight: 500;
 	}
 
 	h1 {

@@ -1,37 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
 	<title id="title">Click to play</title>
-	<desc id="desc">Poster facade on the left becomes a live iframe after a click</desc>
+	<desc id="desc">Framed poster facade becomes a live iframe; footer stays attached</desc>
 	<style>
 		.page { fill: #f4f3ef; }
 		.ink { fill: #1c1b19; }
 		.mute { fill: #5e5c57; }
-		.card { fill: #fff; stroke: #e3e1da; stroke-width: 1; }
-		.poster { fill: #1a1917; }
+		.shell { fill: #fff; stroke: #d8d5cd; stroke-width: 1; }
+		.poster { fill: #111; }
 		.player { fill: #111; }
 		.bar { fill: #ff3e00; }
 		.btn { fill: rgba(0,0,0,0.55); }
 		.tri { fill: #fff; }
+		.foot { fill: #f7f6f2; }
 		.h { font: 600 18px ui-sans-serif, system-ui, sans-serif; }
 		.s { font: 400 13px ui-sans-serif, system-ui, sans-serif; }
 		@media (prefers-color-scheme: dark) {
 			.page { fill: #111110; }
 			.ink { fill: #f4f3ef; }
 			.mute { fill: #a8a69f; }
-			.card { fill: #1a1917; stroke: #2c2b28; }
+			.shell { fill: #1a1917; stroke: #3a3935; }
 			.poster { fill: #0c0c0b; }
 			.player { fill: #0a0a09; }
+			.foot { fill: #201f1c; }
 		}
 	</style>
-	<rect class="page" width="960" height="300" rx="18"/>
+	<rect class="page" width="960" height="320" rx="18"/>
 	<text class="ink h" x="40" y="42">Click to play</text>
-	<text class="mute s" x="40" y="64">No iframe until someone wants it. Privacy-enhanced YouTube by default.</text>
+	<text class="mute s" x="40" y="64">One shell: poster or player above, Watch on YouTube in the footer.</text>
 
 	<g transform="translate(40 88)">
 		<text class="mute s" x="0" y="0">1. Poster + play</text>
-		<rect class="card" y="12" width="380" height="170" rx="14"/>
-		<rect class="poster" x="14" y="26" width="352" height="142" rx="8"/>
-		<circle class="btn" cx="190" cy="97" r="28"/>
-		<path class="tri" d="M182 84v26l22-13z"/>
+		<rect class="shell" y="12" width="380" height="198" rx="12"/>
+		<rect class="poster" x="1" y="13" width="378" height="148" rx="11"/>
+		<circle class="btn" cx="190" cy="87" r="26"/>
+		<path class="tri" d="M182 75v24l20-12z"/>
+		<rect class="foot" x="1" y="161" width="378" height="48"/>
+		<text class="ink s" x="18" y="190">Watch on YouTube</text>
 	</g>
 
 	<path d="M450 180h48" stroke="#5e5c57" stroke-width="2" fill="none"/>
@@ -39,10 +43,12 @@
 
 	<g transform="translate(520 88)">
 		<text class="mute s" x="0" y="0">2. Real iframe</text>
-		<rect class="card" y="12" width="400" height="170" rx="14"/>
-		<rect class="player" x="14" y="26" width="372" height="142" rx="8"/>
-		<rect class="bar" x="14" y="156" width="120" height="4"/>
-		<circle cx="140" cy="158" r="5" fill="#fff"/>
-		<text class="s" x="28" y="52" fill="#f4f3ef">youtube-nocookie · autoplay=1</text>
+		<rect class="shell" y="12" width="400" height="198" rx="12"/>
+		<rect class="player" x="1" y="13" width="398" height="148" rx="11"/>
+		<rect class="bar" x="1" y="149" width="120" height="4"/>
+		<circle cx="130" cy="151" r="5" fill="#fff"/>
+		<text class="s" x="18" y="42" fill="#f4f3ef">youtube-nocookie · autoplay=1</text>
+		<rect class="foot" x="1" y="161" width="398" height="48"/>
+		<text class="ink s" x="18" y="190">Watch on YouTube</text>
 	</g>
 </svg>
