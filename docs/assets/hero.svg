@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+	<title id="title">simple-svelte-embeds hero</title>
+	<desc id="desc">A YouTube-style embed frame with poster, play control, and resize handle</desc>
+	<style>
+		.page { fill: #f4f3ef; }
+		.ink { fill: #1c1b19; }
+		.mute { fill: #5e5c57; }
+		.card { fill: #fff; stroke: #e3e1da; stroke-width: 1; }
+		.poster { fill: #1a1917; }
+		.glow { fill: #2c2b28; }
+		.btn { fill: rgba(0,0,0,0.55); }
+		.tri { fill: #fff; }
+		.grip { fill: rgba(0,0,0,0.45); }
+		.label { font: 600 28px ui-sans-serif, system-ui, sans-serif; letter-spacing: -0.02em; }
+		.sub { font: 400 16px ui-sans-serif, system-ui, sans-serif; }
+		.chip { font: 500 13px ui-sans-serif, system-ui, sans-serif; }
+		@media (prefers-color-scheme: dark) {
+			.page { fill: #111110; }
+			.ink { fill: #f4f3ef; }
+			.mute { fill: #a8a69f; }
+			.card { fill: #1a1917; stroke: #2c2b28; }
+			.poster { fill: #0c0c0b; }
+			.glow { fill: #2a2926; }
+			.grip { fill: rgba(255,255,255,0.35); }
+		}
+	</style>
+	<rect class="page" width="960" height="420" rx="18"/>
+	<text class="ink label" x="48" y="64">simple-svelte-embeds</text>
+	<text class="mute sub" x="48" y="94">Svelte 5 iframe widgets. Zero runtime deps.</text>
+
+	<g transform="translate(48 128)">
+		<rect class="card" width="720" height="240" rx="16"/>
+		<rect class="poster" x="16" y="16" width="688" height="208" rx="10"/>
+		<path class="glow" d="M16 150h688v74a10 10 0 0 1-10 10H26a10 10 0 0 1-10-10z" opacity="0.55"/>
+		<circle class="btn" cx="360" cy="120" r="34"/>
+		<path class="tri" d="M350 104v32l28-16z"/>
+		<path class="grip" d="M688 208h16v16H688zM672 224h32v8h-32z" transform="translate(0 0)"/>
+		<path class="grip" d="M680 200 L704 224 L680 224 Z"/>
+		<text class="mute chip" x="28" y="198" fill="#f4f3ef">poster first · tap to play · drag to resize</text>
+	</g>
+
+	<g transform="translate(800 160)">
+		<rect class="card" width="112" height="72" rx="12"/>
+		<text class="ink chip" x="18" y="32">props</text>
+		<text class="mute chip" x="18" y="52">width</text>
+	</g>
+	<g transform="translate(800 248)">
+		<rect class="card" width="112" height="72" rx="12"/>
+		<text class="ink chip" x="18" y="32">CSS</text>
+		<text class="mute chip" x="18" y="52">--embed-*</text>
+	</g>
+</svg>

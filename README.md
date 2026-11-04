@@ -1,6 +1,12 @@
 # simple-svelte-embeds
 
-Drop-in iframe embeds for **Svelte 5**. One import, one component, real iframe — no SDKs, no adapters, no runtime deps.
+Drop-in iframe embeds for Svelte 5. One import, one component, a real iframe — no SDKs, no adapters, no runtime dependencies.
+
+![simple-svelte-embeds: poster, play, and resize](docs/assets/hero.svg)
+
+```bash
+npm install simple-svelte-embeds
+```
 
 ```svelte
 <script>
@@ -10,25 +16,35 @@ Drop-in iframe embeds for **Svelte 5**. One import, one component, real iframe �
 <YouTube id="dQw4w9WgXcQ" title="Never Gonna Give You Up" />
 ```
 
-Poster first. Tap to play. Drag the corner to resize. Ship it.
+Poster first. Tap to play. Drag the corner to resize.
 
-## Why Svelte people like it
+## Why this exists
 
-- **Svelte 5 only** — `$props`, `$derived`, published `.svelte` source. You compile it; nothing else does.
-- **Zero runtime deps** — no player SDKs, no oEmbed fetchers, no “framework adapters.”
-- **Import what you use** — tree-shake by path. `YouTube.svelte` does not pull in TikTok.
-- **Privacy-first YouTube** — `youtube-nocookie.com` by default, click-to-load facade, “Watch on YouTube” link.
-- **Sized like CSS** — props, parent custom properties, `style`, or a corner drag handle. Same box everywhere.
+Svelte apps usually just need a sized iframe that respects privacy and loads late. This library ships the `.svelte` files themselves — you compile them, tree-shake by path, and leave player SDKs out of the bundle.
 
-Works anywhere a Svelte compiler does: SvelteKit, Vite + Svelte, Astro (`@astrojs/svelte`).
+- Svelte 5 runes (`$props`, `$derived`)
+- Zero runtime dependencies (`svelte` is an optional peer)
+- YouTube uses `youtube-nocookie.com` and a click-to-load facade by default
 
-## Install
+Works in SvelteKit, Vite + Svelte, and Astro (`@astrojs/svelte`).
 
-```bash
-npm install simple-svelte-embeds
-```
+## How it feels
 
-`svelte` `^5` is an optional peer — required only when you import the components.
+![Click to play: poster becomes iframe](docs/assets/click-to-play.svg)
+
+YouTube widgets show a poster until someone clicks. Then the real player loads with `autoplay=1`. A “Watch on YouTube” link stays available for click-through.
+
+![Three ways to size a frame](docs/assets/resize.svg)
+
+One frame, three ways to size it:
+
+| Method | Example |
+|--------|---------|
+| Props | `<YouTube width="40rem" aspectRatio="16 / 9" />` |
+| Parent CSS | `--embed-width`, `--embed-height`, `--embed-aspect` |
+| Drag | corner handle · arrow keys · `onresize` · `resizable={false}` |
+
+Details: [docs/API.md](docs/API.md).
 
 ## Quick start
 
@@ -61,52 +77,22 @@ import YouTube from 'simple-svelte-embeds/YouTube.svelte';
 <YouTube client:visible id="dQw4w9WgXcQ" title="Demo" />
 ```
 
-## Size it your way
-
-One frame. Pick a method:
-
-| Method | Example |
-|--------|---------|
-| Props | `<YouTube width="40rem" aspectRatio="16 / 9" />` |
-| Parent CSS | `--embed-width`, `--embed-height`, `--embed-aspect`, … |
-| `style` | `style="width: 640px; height: 360px"` |
-| Drag | corner handle · arrow keys · `onresize` · `resizable={false}` |
-
-```css
-.player {
-	--embed-width: min(100%, 40rem);
-	--embed-aspect: 16 / 9;
-}
-```
-
-Full sizing notes: [docs/API.md](docs/API.md).
+Import the file you need: `simple-svelte-embeds/YouTubeShorts.svelte`. Unused platforms stay out of the graph.
 
 ## Widgets
 
-| Platform | Components |
-|----------|------------|
-| YouTube | `YouTube`, `YouTubeShorts`, `YouTubePodcast`, `YouTubePlaylist` |
-| Vimeo | `Vimeo`, `VimeoShowcase` |
-| Instagram | `Instagram`, `InstagramReel`, `InstagramTV` |
-| X | `X`, `XPost` |
-| Facebook | `Facebook`, `FacebookVideo`, `FacebookPage` |
-| TikTok | `TikTok`, `TikTokPost` |
-| Spotify | `Spotify`, `SpotifyAlbum`, `SpotifyPlaylist`, `SpotifyEpisode`, `SpotifyShow` |
-| SoundCloud | `SoundCloud`, `SoundCloudPlaylist`, `SoundCloudProfile` |
-| Reddit | `Reddit`, `RedditComment` |
-| CodePen | `CodePen`, `CodePenPreview` |
-| Bluesky · Gist · anything | `Bluesky`, `Gist`, `Embed` |
+YouTube, Vimeo, Instagram, X, Facebook, TikTok, Spotify, SoundCloud, Reddit, CodePen, Bluesky, Gist, plus a generic `Embed`.
 
-Import the file: `simple-svelte-embeds/YouTubeShorts.svelte`.
+Named components per content type (`YouTubeShorts`, `SpotifyPlaylist`, `XPost`, …). Full list and props: [docs/API.md](docs/API.md).
 
-## Demo
-
-Try every widget in the SvelteKit demo (Cloudflare Workers ready):
+## Try the demo
 
 ```bash
 npm install --prefix demo
 npm run demo
 ```
+
+SvelteKit app in `demo/`, ready for Cloudflare Workers. Not part of the published package.
 
 ## Develop
 
@@ -116,9 +102,7 @@ npm run check
 npm test
 ```
 
-Published artifact is `src/` — no build step, no `dist/`.
-
-CI runs `svelte-check` and Playwright against `svelte@latest` on every PR, and Dependabot opens weekly Svelte bumps.
+Published artifact is `src/` — no build step. CI runs against `svelte@latest`; Dependabot opens weekly Svelte bumps.
 
 API · [docs/API.md](docs/API.md) · Design · [docs/DESIGN.md](docs/DESIGN.md)
 
