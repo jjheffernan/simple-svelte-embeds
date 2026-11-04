@@ -19,6 +19,7 @@ The frame is one box. Any of these sets it:
 |--------|---------|
 | Props | `<YouTube width="640px" height="360px" />` or `aspectRatio="16 / 9"` |
 | Parent CSS | `--embed-width`, `--embed-height`, `--embed-max-width`, `--embed-max-height`, `--embed-aspect` |
+| Chrome CSS | `--embed-radius`, `--embed-border`, `--embed-bg`, `--embed-fg` |
 | `style` | `style="width: 640px; height: 360px"` |
 
 ```svelte
@@ -47,6 +48,11 @@ Drag the corner handle, or focus it and use the arrow keys (Shift moves 32px). T
 | `maxWidth` | `none` | `--embed-max-width` |
 | `maxHeight` | `none` | `--embed-max-height` |
 | `aspectRatio` | `16 / 9` | `--embed-aspect` |
+| — | `0.75rem` | `--embed-radius` |
+| — | `1px solid` mix of `CanvasText` | `--embed-border` |
+| — | `#111` (frame) / `Canvas` (YouTube shell) | `--embed-bg` |
+
+Frames clip the iframe (`overflow: hidden`) and round the corners. YouTube wraps the player and “Watch on YouTube” in one shell so the link is a footer, not a floating line. Set `chrome={false}` on `Embed` / `Frame` when nesting a bare fill layer.
 
 Portrait widgets pass their own `aspectRatio` (`9 / 16`, `4 / 5`, `1 / 1`, `5 / 2`, `4 / 3`). Shorts also default `maxWidth` to `min(100%, 20rem, calc(46dvh * 9 / 16))`.
 

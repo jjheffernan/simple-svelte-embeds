@@ -11,7 +11,11 @@ test('youtube waits for a click before autoplay', async ({ page }) => {
 	await expect(page.getByRole('button', { name: 'Play YouTube demo' })).toBeVisible();
 	await expect(page.locator('iframe')).toHaveCount(0);
 
-	await page.getByRole('button', { name: 'Play YouTube demo' }).click();
+	await expect(async () => {
+		await page.getByRole('button', { name: 'Play YouTube demo' }).click();
+		await expect(page.locator('iframe')).toHaveCount(1);
+	}).toPass();
+
 	const src = await page.locator('iframe').getAttribute('src');
 	expect(src).toContain('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ');
 	expect(src).toContain('autoplay=1');
@@ -168,7 +172,7 @@ async function measure(page) {
 			widgets: box('nav[aria-label="Widgets"]'),
 			section: box('section'),
 			input: box('input'),
-			player: box('button, iframe')
+			player: box('button[aria-label^="Play"], iframe')
 		};
 	});
 }

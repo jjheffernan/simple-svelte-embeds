@@ -8,6 +8,7 @@
 		aspectRatio,
 		style,
 		class: className,
+		chrome = true,
 		resizable = true,
 		onresize
 	} = $props();
@@ -71,7 +72,7 @@
 </script>
 
 <div
-	class={['embed', className]}
+	class={['embed', !chrome && 'bare', className]}
 	{style}
 	style:--embed-width={liveW}
 	style:--embed-height={liveH}
@@ -89,6 +90,7 @@
 	.embed {
 		position: relative;
 		box-sizing: border-box;
+		overflow: hidden;
 		width: var(--embed-width, 100%);
 		height: var(--embed-height, auto);
 		max-width: var(--embed-max-width, none);
@@ -96,6 +98,16 @@
 		aspect-ratio: var(--embed-aspect, 16 / 9);
 		margin-inline: auto;
 		min-width: 0;
+		border: var(--embed-border, 1px solid color-mix(in srgb, CanvasText 14%, transparent));
+		border-radius: var(--embed-radius, 0.75rem);
+		background: var(--embed-bg, #111);
+		color: var(--embed-fg, inherit);
+	}
+
+	.bare {
+		border: 0;
+		border-radius: 0;
+		background: transparent;
 	}
 
 	.grip {
@@ -107,8 +119,9 @@
 		height: var(--embed-grip, 2.75rem);
 		padding: 0;
 		border: 0;
+		border-radius: 0 0 var(--embed-radius, 0.75rem) 0;
 		color: #fff;
-		background: linear-gradient(135deg, transparent 50%, rgb(0 0 0 / 45%) 50%);
+		background: linear-gradient(135deg, transparent 48%, rgb(0 0 0 / 50%) 48%);
 		cursor: nwse-resize;
 		touch-action: none;
 	}

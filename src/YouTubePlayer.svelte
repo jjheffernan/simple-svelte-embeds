@@ -22,10 +22,12 @@
 	let active = $state(false);
 	let failedPoster = $state('');
 
-	// Reset facade when the video changes — $effect.pre is the prop-reset escape hatch.
+	// Reset facade only when the video identity changes.
+	let mediaKey = $derived(`${src}\0${poster ?? ''}`);
+	let seenKey = $state.raw('');
 	$effect.pre(() => {
-		src;
-		poster;
+		if (mediaKey === seenKey) return;
+		seenKey = mediaKey;
 		active = false;
 		failedPoster = '';
 	});
@@ -38,8 +40,26 @@
 	});
 </script>
 
-<div>
-	<Frame {width} {height} {maxWidth} {maxHeight} {aspectRatio} {style} class={className} {resizable} {onresize}>
+<div
+	class={['shell', className]}
+	{style}
+	style:--embed-width={width}
+	style:--embed-height={height}
+	style:--embed-max-width={maxWidth}
+	style:--embed-max-height={maxHeight}
+	style:--embed-aspect={aspectRatio}
+>
+	<Frame
+		width="100%"
+		height={height}
+		maxWidth="none"
+		maxHeight={maxHeight}
+		{aspectRatio}
+		class="media"
+		chrome={false}
+		{resizable}
+		{onresize}
+	>
 		{#if active}
 			<Embed
 				class="fill"
@@ -49,6 +69,7 @@
 				height="100%"
 				aspectRatio="auto"
 				loading="eager"
+				chrome={false}
 				resizable={false}
 				{...rest}
 			/>
@@ -61,10 +82,32 @@
 			</button>
 		{/if}
 	</Frame>
-	<a {href} target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+	<a class="watch" {href} target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
 </div>
 
 <style>
+	.shell {
+		box-sizing: border-box;
+		width: var(--embed-width, 100%);
+		max-width: var(--embed-max-width, none);
+		margin-inline: auto;
+		min-width: 0;
+		overflow: hidden;
+		border: var(--embed-border, 1px solid color-mix(in srgb, CanvasText 14%, transparent));
+		border-radius: var(--embed-radius, 0.75rem);
+		background: var(--embed-bg, Canvas);
+		color: var(--embed-fg, inherit);
+	}
+
+	.shell :global(.media.embed) {
+		width: 100%;
+		max-width: none;
+		margin: 0;
+		border: 0;
+		border-radius: 0;
+		background: #111;
+	}
+
 	.fill,
 	:global(.fill) {
 		position: absolute;
@@ -83,7 +126,7 @@
 
 	button:focus-visible {
 		outline: 2px solid currentColor;
-		outline-offset: 3px;
+		outline-offset: -3px;
 	}
 
 	img {
@@ -116,12 +159,36 @@
 		border-color: transparent transparent transparent #fff;
 	}
 
-	a {
-		display: inline-flex;
+	.watch {
+		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		box-sizing: border-box;
 		min-height: 2.75rem;
-		margin-top: 0.25rem;
+		padding: 0.55rem 0.9rem;
+		border-top: var(--embed-border, 1px solid color-mix(in srgb, CanvasText 14%, transparent));
+		color: inherit;
 		font: inherit;
-		font-size: 0.9rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		text-decoration: none;
+		background: color-mix(in srgb, CanvasText 4%, transparent);
+	}
+
+	.watch::after {
+		content: '↗';
+		opacity: 0.55;
+		font-weight: 400;
+	}
+
+	.watch:hover,
+	.watch:focus-visible {
+		background: color-mix(in srgb, CanvasText 8%, transparent);
+	}
+
+	.watch:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: -3px;
 	}
 </style>
