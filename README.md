@@ -2,7 +2,7 @@
 
 Drop-in iframe embeds for Svelte 5. One import, one component, a real iframe — no SDKs, no adapters, no runtime dependencies.
 
-![simple-svelte-embeds: poster, play, and resize](docs/assets/hero.svg)
+![Widget overview: YouTube, Shorts, X, and Spotify](docs/assets/widgets-overview.png)
 
 ```bash
 npm install simple-svelte-embeds
@@ -16,7 +16,7 @@ npm install simple-svelte-embeds
 <YouTube id="dQw4w9WgXcQ" title="Never Gonna Give You Up" />
 ```
 
-Poster first. Tap to play. Drag the corner to resize.
+Poster first. Tap to play. Drag the corner to resize. Live gallery: `npm run demo` then open `/gallery`.
 
 ## Why this exists
 
@@ -92,7 +92,7 @@ npm install --prefix demo
 npm run demo
 ```
 
-SvelteKit app in `demo/`, ready for Cloudflare Workers. Not part of the published package.
+Open `/` to poke one widget at a time, or `/gallery` for the overview used above. SvelteKit app in `demo/`, ready for Cloudflare Workers. Not part of the published package.
 
 ## Develop
 
