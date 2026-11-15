@@ -1,13 +1,23 @@
 {
 	"name": "simple-svelte-embeds",
 	"version": "0.0.1",
-	"description": "Minimal Svelte iframe embeds",
+	"description": "Minimal Svelte 5 iframe embeds — zero runtime deps, privacy-friendly defaults",
 	"license": "MIT",
 	"type": "module",
+	"author": "jjheffernan",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jjheffernan/simple-svelte-embeds.git"
+	},
+	"homepage": "https://github.com/jjheffernan/simple-svelte-embeds#readme",
+	"bugs": {
+		"url": "https://github.com/jjheffernan/simple-svelte-embeds/issues"
+	},
 	"scripts": {
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"demo": "npm run dev --prefix demo",
-		"test": "playwright test"
+		"test": "playwright test",
+		"prepublishOnly": "npm run check && npm test"
 	},
 	"files": [
 		"src"
@@ -35,9 +45,21 @@
 	"keywords": [
 		"svelte",
 		"sveltekit",
+		"astro",
 		"embed",
+		"iframe",
 		"youtube",
 		"vimeo",
-		"iframe"
+		"spotify",
+		"instagram",
+		"tiktok",
+		"bluesky",
+		"facebook",
+		"twitter",
+		"x",
+		"soundcloud",
+		"reddit",
+		"codepen",
+		"gist"
 	]
 }

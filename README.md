@@ -8,7 +8,8 @@ Drop-in iframe embeds for Svelte 5. One import, one component, a real iframe —
 </picture>
 
 ```bash
-npm install simple-svelte-embeds
+# Until 0.1.0 is on npm:
+npm install github:jjheffernan/simple-svelte-embeds
 ```
 
 ```svelte
@@ -107,7 +108,7 @@ npm test
 
 Published artifact is `src/` — no build step. CI runs against `svelte@latest`; Dependabot opens weekly Svelte bumps.
 
-API · [docs/API.md](docs/API.md) · Design · [docs/DESIGN.md](docs/DESIGN.md)
+API · [docs/API.md](docs/API.md) · Changelog · [CHANGELOG.md](CHANGELOG.md) · Design · [docs/DESIGN.md](docs/DESIGN.md)
 
 ## License
 

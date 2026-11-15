@@ -1,4 +1,6 @@
-# API (draft)
+# API
+
+0.x may still change before the first npm release. Import paths and the thin `Embed` composition are the stable core.
 
 ## Package exports
 
