@@ -55,6 +55,32 @@ test('widget iframes point at the public embed url', async ({ page }) => {
 	const pageSrc = await page.locator('iframe').getAttribute('src');
 	expect(pageSrc).toContain('https://www.facebook.com/plugins/page.php');
 	expect(pageSrc).toContain('href=https%3A%2F%2Fwww.facebook.com%2Ffacebook');
+
+	await page.goto('/?tab=youtube&widget=profile');
+	await expect(page.locator('iframe, button[aria-label^="Play"]')).toBeVisible();
+	await expect(async () => {
+		await page.getByRole('button', { name: /Play/i }).click();
+		await expect(page.locator('iframe')).toHaveCount(1);
+	}).toPass();
+	const channel = await page.locator('iframe').getAttribute('src');
+	expect(channel).toContain('list=UU_x5XG1OV2P6uZZ5FSM9Ttw');
+
+	await page.goto('/?tab=instagram&widget=profile');
+	await expect(page.locator('iframe')).toHaveAttribute(
+		'src',
+		'https://www.instagram.com/instagram/embed/'
+	);
+
+	await page.goto('/?tab=spotify&widget=profile');
+	await expect(page.locator('iframe')).toHaveAttribute(
+		'src',
+		'https://open.spotify.com/embed/artist/0OdUWJ0sBjDrqHygGUXeCF'
+	);
+
+	await page.goto('/?tab=facebook&widget=profile');
+	const profileSrc = await page.locator('iframe').getAttribute('src');
+	expect(profileSrc).toContain('https://www.facebook.com/plugins/page.php');
+	expect(profileSrc).toContain('href=https%3A%2F%2Fwww.facebook.com%2Ffacebook');
 });
 
 for (const viewport of viewports) {
@@ -123,6 +149,28 @@ test('frame size follows props, variables, and style', async ({ page }) => {
 	expect(box.width).toBeLessThan(430);
 	expect(box.height).toBeGreaterThan(190);
 	expect(box.height).toBeLessThan(210);
+});
+
+test('X post height follows short and tall tweets', async ({ page }) => {
+	await page.setViewportSize({ width: 1280, height: 900 });
+	await page.goto('/?tab=x&widget=post');
+	await page.waitForFunction(() => window.__svelte);
+	const frame = page.locator('section .embed');
+	const input = page.getByLabel('Status id');
+
+	await input.fill('20');
+	await expect
+		.poll(async () => (await frame.boundingBox())?.height ?? 0, { timeout: 15000 })
+		.toBeGreaterThan(180);
+	const short = await frame.boundingBox();
+	expect(short.height).toBeLessThan(280);
+
+	await input.fill('849813577770778624');
+	await expect
+		.poll(async () => (await frame.boundingBox())?.height ?? 0, { timeout: 15000 })
+		.toBeGreaterThan(480);
+	const tall = await frame.boundingBox();
+	expect(tall.height).toBeGreaterThan(short.height + 150);
 });
 
 test('corner drag resizes the frame', async ({ page }) => {

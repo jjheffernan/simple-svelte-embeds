@@ -67,7 +67,7 @@ Details: [docs/API.md](docs/API.md).
 <InstagramReel id="CgdzCoMoUBJ" title="Reel" />
 <SpotifyPlaylist id="37i9dQZF1DXcBWIGoYBM5M" title="Playlist" />
 <Vimeo id="148751763" title="Demo video" />
-<X id="20" title="Post on X" style="width: 24rem; aspect-ratio: 4 / 5" />
+<X id="20" title="Post on X" style="width: 24rem" />
 <Embed src="https://example.com/embed" title="Custom embed" />
 ```
 
@@ -86,7 +86,7 @@ Import the file you need: `simple-svelte-embeds/YouTubeShorts.svelte`. Unused pl
 
 YouTube, Vimeo, Instagram, X, Facebook, TikTok, Spotify, SoundCloud, Reddit, CodePen, Bluesky, Gist, plus a generic `Embed`.
 
-Named components per content type (`YouTubeShorts`, `SpotifyPlaylist`, `XPost`, …). Full list and props: [docs/API.md](docs/API.md).
+Named components per content type (`YouTubeShorts`, `SpotifyPlaylist`, `XPost`, `*Profile`, …). Profile iframes exist for YouTube, Instagram, Facebook, Spotify, and SoundCloud; other platforms have no public profile iframe. Full list: [docs/API.md](docs/API.md).
 
 ## Try the demo
 

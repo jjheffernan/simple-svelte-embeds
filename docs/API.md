@@ -87,6 +87,7 @@ A poster button loads the player on tap (`autoplay=1`). “Watch on YouTube” o
 | `YouTubeShorts` | `YouTubeShorts.svelte` | short id | `9 / 16`, capped width, loops |
 | `YouTubePodcast` | `YouTubePodcast.svelte` | playlist id, optional `episode` | `16 / 9` |
 | `YouTubePlaylist` | `YouTubePlaylist.svelte` | playlist id | `16 / 9` |
+| `YouTubeProfile` | `YouTubeProfile.svelte` | channel id (`UC…` → uploads) or handle | `16 / 9` |
 
 YouTube community posts have no public iframe. A live video uses `YouTube` with the video id. Live chat needs the embedding hostname, so it is not included.
 
@@ -127,16 +128,17 @@ Same shared props as `Embed`. Each component only builds `src`.
 | `Instagram` | `Instagram.svelte` | `id` shortcode | `4 / 5` |
 | `InstagramReel` | `InstagramReel.svelte` | `id` | `4 / 5` |
 | `InstagramTV` | `InstagramTV.svelte` | `id` | `4 / 5` |
-| `XPost` | `XPost.svelte` | `id` status id | `4 / 5`, single post |
-| `X` | `X.svelte` | `id` status id | `4 / 5`, thread |
+| `InstagramProfile` | `InstagramProfile.svelte` | `id` username | `4 / 5` |
+| `XPost` | `XPost.svelte` | `id` status id | auto height (`twttr.private.resize`), single post |
+| `X` | `X.svelte` | `id` status id | auto height (`twttr.private.resize`), thread |
 | `Facebook` | `Facebook.svelte` | `href` post URL | `4 / 5` |
 | `FacebookVideo` | `FacebookVideo.svelte` | `href` video URL | `16 / 9` |
-| `FacebookPage` | `FacebookPage.svelte` | `href` page URL | `4 / 5` |
+| `FacebookPage` / `FacebookProfile` | matching `.svelte` file | `href` page URL | `4 / 5` (`Profile` aliases `Page`) |
 | `TikTok` | `TikTok.svelte` | `id` | `9 / 16`, player |
 | `TikTokPost` | `TikTokPost.svelte` | `id` | `9 / 16`, card |
 | `Bluesky` | `Bluesky.svelte` | `id` `did/app.bsky.feed.post/rkey` | `4 / 5` |
 | `Spotify` | `Spotify.svelte` | `id` track | `5 / 2` |
-| `SpotifyAlbum` / `SpotifyPlaylist` / `SpotifyShow` | matching `.svelte` file | `id` | `1 / 1` |
+| `SpotifyAlbum` / `SpotifyPlaylist` / `SpotifyShow` / `SpotifyProfile` | matching `.svelte` file | `id` | `1 / 1` (`Profile` = artist) |
 | `SpotifyEpisode` | `SpotifyEpisode.svelte` | `id` | `5 / 2` |
 | `SoundCloud` | `SoundCloud.svelte` | `id` track | `5 / 2` |
 | `SoundCloudPlaylist` / `SoundCloudProfile` | matching `.svelte` file | `id` | `4 / 3` |
@@ -145,6 +147,10 @@ Same shared props as `Embed`. Each component only builds `src`.
 | `CodePen` | `CodePen.svelte` | `id` `user/pen` | `16 / 9` |
 | `CodePenPreview` | `CodePenPreview.svelte` | `id` `user/pen` | `16 / 9`, result only |
 | `Gist` | `Gist.svelte` | `id` `user/gistId` | `16 / 9` |
+
+`X` / `XPost` listen for Twitter’s resize `postMessage` and set frame height to the tweet. Pass `height` or a non-`auto` `aspectRatio` to lock size instead.
+
+Profile widgets (iframe only): `YouTubeProfile`, `InstagramProfile`, `FacebookProfile`, `SpotifyProfile`, `SoundCloudProfile`. X, TikTok, Bluesky, Vimeo, Reddit, CodePen, and Gist have no public profile iframe — not included.
 
 Bluesky and Gist each publish one iframe, so they have one widget.
 

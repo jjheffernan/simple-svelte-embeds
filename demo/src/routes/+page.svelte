@@ -7,9 +7,11 @@
 	import Embed from '../../../src/Embed.svelte';
 	import Facebook from '../../../src/Facebook.svelte';
 	import FacebookPage from '../../../src/FacebookPage.svelte';
+	import FacebookProfile from '../../../src/FacebookProfile.svelte';
 	import FacebookVideo from '../../../src/FacebookVideo.svelte';
 	import Gist from '../../../src/Gist.svelte';
 	import Instagram from '../../../src/Instagram.svelte';
+	import InstagramProfile from '../../../src/InstagramProfile.svelte';
 	import InstagramReel from '../../../src/InstagramReel.svelte';
 	import InstagramTV from '../../../src/InstagramTV.svelte';
 	import Reddit from '../../../src/Reddit.svelte';
@@ -21,6 +23,7 @@
 	import SpotifyAlbum from '../../../src/SpotifyAlbum.svelte';
 	import SpotifyEpisode from '../../../src/SpotifyEpisode.svelte';
 	import SpotifyPlaylist from '../../../src/SpotifyPlaylist.svelte';
+	import SpotifyProfile from '../../../src/SpotifyProfile.svelte';
 	import SpotifyShow from '../../../src/SpotifyShow.svelte';
 	import TikTok from '../../../src/TikTok.svelte';
 	import TikTokPost from '../../../src/TikTokPost.svelte';
@@ -31,6 +34,7 @@
 	import YouTube from '../../../src/YouTube.svelte';
 	import YouTubePlaylist from '../../../src/YouTubePlaylist.svelte';
 	import YouTubePodcast from '../../../src/YouTubePodcast.svelte';
+	import YouTubeProfile from '../../../src/YouTubeProfile.svelte';
 	import YouTubeShorts from '../../../src/YouTubeShorts.svelte';
 
 	const platforms = [
@@ -41,7 +45,8 @@
 				{ id: 'video', label: 'Video', hint: 'Video id', wide: true, sample: 'dQw4w9WgXcQ', prop: 'id', title: 'YouTube demo', Widget: YouTube },
 				{ id: 'shorts', label: 'Shorts', hint: 'Short id', wide: false, sample: 'pVRefGmQDJM', prop: 'id', title: 'YouTube Short', Widget: YouTubeShorts },
 				{ id: 'podcast', label: 'Podcast', hint: 'Podcast playlist id', wide: true, sample: 'PLC77007E23FF423C6', prop: 'id', title: 'YouTube podcast', Widget: YouTubePodcast },
-				{ id: 'playlist', label: 'Playlist', hint: 'Playlist id', wide: true, sample: 'PLC77007E23FF423C6', prop: 'id', title: 'YouTube playlist', Widget: YouTubePlaylist }
+				{ id: 'playlist', label: 'Playlist', hint: 'Playlist id', wide: true, sample: 'PLC77007E23FF423C6', prop: 'id', title: 'YouTube playlist', Widget: YouTubePlaylist },
+				{ id: 'profile', label: 'Profile', hint: 'Channel id (UC…) or handle', wide: true, sample: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', prop: 'id', title: 'YouTube channel', Widget: YouTubeProfile }
 			]
 		},
 		{
@@ -58,7 +63,8 @@
 			widgets: [
 				{ id: 'post', label: 'Post', hint: 'Shortcode', wide: false, sample: 'CgdzCoMoUBJ', prop: 'id', title: 'Instagram post', Widget: Instagram },
 				{ id: 'reel', label: 'Reel', hint: 'Reel shortcode', wide: false, sample: '', prop: 'id', title: 'Instagram reel', Widget: InstagramReel },
-				{ id: 'tv', label: 'TV', hint: 'TV shortcode', wide: false, sample: '', prop: 'id', title: 'Instagram TV', Widget: InstagramTV }
+				{ id: 'tv', label: 'TV', hint: 'TV shortcode', wide: false, sample: '', prop: 'id', title: 'Instagram TV', Widget: InstagramTV },
+				{ id: 'profile', label: 'Profile', hint: 'Username', wide: false, sample: 'instagram', prop: 'id', title: 'Instagram profile', Widget: InstagramProfile }
 			]
 		},
 		{
@@ -75,7 +81,8 @@
 			widgets: [
 				{ id: 'post', label: 'Post', hint: 'Post URL', wide: false, sample: 'https://www.facebook.com/facebook/posts/10153231379946729', prop: 'href', title: 'Facebook post', Widget: Facebook },
 				{ id: 'video', label: 'Video', hint: 'Video URL', wide: true, sample: '', prop: 'href', title: 'Facebook video', Widget: FacebookVideo },
-				{ id: 'page', label: 'Page', hint: 'Page URL', wide: false, sample: 'https://www.facebook.com/facebook', prop: 'href', title: 'Facebook page', Widget: FacebookPage }
+				{ id: 'page', label: 'Page', hint: 'Page URL', wide: false, sample: 'https://www.facebook.com/facebook', prop: 'href', title: 'Facebook page', Widget: FacebookPage },
+				{ id: 'profile', label: 'Profile', hint: 'Page URL', wide: false, sample: 'https://www.facebook.com/facebook', prop: 'href', title: 'Facebook profile', Widget: FacebookProfile }
 			]
 		},
 		{
@@ -101,7 +108,8 @@
 				{ id: 'album', label: 'Album', hint: 'Album id', wide: true, sample: '', prop: 'id', title: 'Spotify album', Widget: SpotifyAlbum },
 				{ id: 'playlist', label: 'Playlist', hint: 'Playlist id', wide: true, sample: '37i9dQZF1DXcBWIGoYBM5M', prop: 'id', title: 'Spotify playlist', Widget: SpotifyPlaylist },
 				{ id: 'episode', label: 'Episode', hint: 'Episode id', wide: true, sample: '', prop: 'id', title: 'Spotify episode', Widget: SpotifyEpisode },
-				{ id: 'show', label: 'Show', hint: 'Show id', wide: true, sample: '', prop: 'id', title: 'Spotify show', Widget: SpotifyShow }
+				{ id: 'show', label: 'Show', hint: 'Show id', wide: true, sample: '', prop: 'id', title: 'Spotify show', Widget: SpotifyShow },
+				{ id: 'profile', label: 'Profile', hint: 'Artist id', wide: true, sample: '0OdUWJ0sBjDrqHygGUXeCF', prop: 'id', title: 'Spotify artist', Widget: SpotifyProfile }
 			]
 		},
 		{

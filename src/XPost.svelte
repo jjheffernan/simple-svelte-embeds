@@ -1,7 +1,7 @@
 <script>
 	import X from './X.svelte';
 
-	let { id, aspectRatio = '4 / 5', ...rest } = $props();
+	let { id, ...rest } = $props();
 </script>
 
-<X {id} conversation={false} {aspectRatio} {...rest} />
+<X {id} conversation={false} {...rest} />
